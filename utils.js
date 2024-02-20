@@ -20,9 +20,8 @@
     appId: "1:127201688248:web:15e1d416172abd72fa124d"
   };
   
-  
   // Initialize Firebase
   export const app = initializeApp(firebaseConfig);
   export const db = getFirestore(app);
   export const Users = await getDocs(collection(db, "Users"));
-  export const Ranking = await getDocs(collection(db, "ranking"));
+  export const Ranking = await getDocs(collection(db, "Ranking"));
