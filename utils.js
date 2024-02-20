@@ -21,3 +21,29 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const Users = await getDocs(collection(db, "Users"));
 export const Ranking = await getDocs(collection(db, "Ranking"));
+export const Quiz = await getDocs(collection(db, "Preguntas"));
+
+export function getUsers() {
+  Users.forEach((doc) => {
+    var usuario = doc.Users;
+    var contraseña = doc.contraseña;
+  });
+}
+
+export function getRanking() {
+  Users.forEach((doc) => {
+    var usuario = doc.usuario;
+    var aciertos = doc.aciertos;
+  });
+}
+
+export function getPreguntas() {
+  Users.forEach((doc) => {
+    var categoria = doc.category;
+    var correcta = doc.correct_answer;
+    var dificultad = doc.difficulty;
+    var incorrectas = doc.incorrect_answers;
+    var preguntas = doc.question;
+    var tipoPregunta = doc.type;
+  });
+}

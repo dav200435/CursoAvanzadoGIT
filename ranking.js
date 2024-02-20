@@ -1,8 +1,9 @@
-import { Users } from "./utils.js";
+import { getUsers, Ranking, Users } from "./utils.js";
 
+console.log(getUsers());
 
-//const r = Ranking
-//console.log(r)
+const r = Ranking;
+console.log(r);
 
-const u = Users
-console.log(u)
+const u = Users;
+console.log(u);
