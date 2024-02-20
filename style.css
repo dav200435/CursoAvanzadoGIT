@@ -33,3 +33,8 @@ nav .barnav div:hover{
 body .QUIZ{
     margin-top: 50px;
 }
+
+section #podio div{
+   display: flex;
+   align-items: baseline;
+}
