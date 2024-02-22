@@ -39,6 +39,7 @@ export function getRanking() {
     Users.forEach((doc) => {
       doc.id == usuario ? usuario = doc.data()["Users"]: usuario = usuario;
     });
+    return id
   });
 }
 
@@ -53,3 +54,5 @@ export function getPreguntas() {
     var tipoPregunta = doc.data()["type"];
   });
 }
+
+console.log(getRanking());
