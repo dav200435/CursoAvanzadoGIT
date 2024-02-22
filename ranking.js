@@ -1,5 +1,5 @@
-import { getUsers, Ranking, Users } from "./utils.js";
+import { getRanking } from "./utils.js";
 
-getUsers();
+getRanking();
 
-console.log(usuario)
+console.log(getRanking())

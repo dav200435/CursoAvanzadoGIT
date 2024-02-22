@@ -19,34 +19,38 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const Users = await getDocs(collection(db, "Users"));
-export const Ranking = await getDocs(collection(db, "Ranking"));
-export const Quiz = await getDocs(collection(db, "Preguntas"));
+const Users = await getDocs(collection(db, "Users"));
+const Ranking = await getDocs(collection(db, "Ranking"));
+const Quiz = await getDocs(collection(db, "Preguntas"));
 
-function getUsers() {
+export function getUsers() {
   Users.forEach((doc) => {
-    var id = JSON.parse(doc.id);
-    var usuario = JSON.parse(doc.data())[0];
-    console.log(id, usuario);
+    var id = doc.id;
+    var usuario = doc.data()["Users"];
+    var contraseña = doc.data()["contraseña"];
   });
 }
 
 export function getRanking() {
   Ranking.forEach((doc) => {
-    var usuario = doc.usuario;
-    var aciertos = doc.aciertos;
+    var id = doc.id;
+    var aciertos = doc.data()["aciertos"];
+    var usuario = doc.data()["usuario"]["id"];
   });
 }
 
 export function getPreguntas() {
   Quiz.forEach((doc) => {
-    var categoria = doc.category;
-    var correcta = doc.correct_answer;
-    var dificultad = doc.difficulty;
-    var incorrectas = doc.incorrect_answers;
-    var preguntas = doc.question;
-    var tipoPregunta = doc.type;
+    var id = doc.id;
+    var categoria = doc.data()["category"];
+    var correcta = doc.data()["correct_answer"];
+    var dificultad = doc.data()["difficulty"];
+    var incorrectas = doc.data()["incorrect_answers"];
+    var preguntas = doc.data()["question"];
+    var tipoPregunta = doc.data()["type"];
   });
 }
 
-getUsers()
+getUsers();
+getRanking();
+getPreguntas();
