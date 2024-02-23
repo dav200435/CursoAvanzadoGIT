@@ -24,35 +24,42 @@ const Ranking = await getDocs(collection(db, "Ranking"));
 const Quiz = await getDocs(collection(db, "Preguntas"));
 
 export function getUsers() {
+  var users = []
   Users.forEach((doc) => {
     var id = doc.id;
     var usuario = doc.data()["Users"];
     var contraseña = doc.data()["contraseña"];
+    users.push([id, usuario, contraseña]);
   });
+  return users;
 }
 
 export function getRanking() {
+  var userAciertos = [];
   Ranking.forEach((doc) => {
     var id = doc.id;
     var aciertos = doc.data()["aciertos"];
-    var usuario = doc.data()["usuario"]["id"];
+    var userId = doc.data()["usuario"]["id"];
     Users.forEach((doc) => {
-      doc.id == usuario ? usuario = doc.data()["Users"]: usuario = usuario;
+      doc.id == userId ? userId = doc.data()["Users"]: userId = userId;
     });
-    return id
+    userAciertos.push([id, userId, aciertos]);
   });
+  return userAciertos;
 }
 
 export function getPreguntas() {
+  var id = [];
+  var quiz = []
   Quiz.forEach((doc) => {
-    var id = doc.id;
+    id.push(doc.id);
     var categoria = doc.data()["category"];
     var correcta = doc.data()["correct_answer"];
     var dificultad = doc.data()["difficulty"];
     var incorrectas = doc.data()["incorrect_answers"];
     var preguntas = doc.data()["question"];
     var tipoPregunta = doc.data()["type"];
+    quiz.push([categoria, correcta, dificultad, incorrectas, preguntas, tipoPregunta]);
   });
+  return quiz;
 }
-
-console.log(getRanking());
