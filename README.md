@@ -1,6 +1,6 @@
 # CursoAvanzadoGIT
 
-## Este repositorio es para un ejercicio de Davinia
+## Quiz
 
 ## to do:
 generar pagina ranking (Ya se saca el user)
