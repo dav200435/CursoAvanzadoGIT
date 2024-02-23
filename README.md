@@ -2,7 +2,7 @@
 
 ## Este repositorio es para un ejercicio de Davinia
 
-##to do:
+## to do:
 generar pagina ranking (Ya se saca el user)
 
 quiz: block despues de responder,
