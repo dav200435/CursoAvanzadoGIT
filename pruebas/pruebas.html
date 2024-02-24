@@ -4,17 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trivia Game</title>
-<style>
-    button {
-        display: block;
-        margin-bottom: 10px;
-    }
-</style>
 </head>
 <body>
 
 <h1>Trivia Game</h1>
-<div id="questions"></div>
+<div id="correct-answers"><p>Respuestas correctas: <span id="correct-count">0</span></p></div>
+    <div id="questions"></div>
     <script src="pruebas.js"></script>
+    <hr>
+    <button id="restart-btn" onclick="restartGame()">Terminar</button>
 </body>
 </html>
