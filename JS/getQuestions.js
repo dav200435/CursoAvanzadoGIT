@@ -15,7 +15,7 @@ function shuffleArray(array) {
     return array;
 }
 
-//hay veces que no funciona ya que falla la peticion con la api de preguntas
+//hay veces que no funciona ya que falla la peticion con la api de preguntas si reinicias deveria funcionar
 async function displayQuestions() {
     const questions = await getQuestions();
     const questionsContainer = document.getElementById('questions');
@@ -61,14 +61,17 @@ async function displayQuestions() {
 }
 
 function restartGame() {
-    document.getElementById('restart-btn').style.display = 'none'; 
     document.getElementById('questions').innerHTML = ''; 
     document.getElementById('correct-count').textContent = '0'; 
     displayQuestions();
 }
 
 function sendInfo(){
+    correctAnswersCount;
 
+
+    correctAnswersCount=0;
+    restartGame();
 }
 
 displayQuestions();
