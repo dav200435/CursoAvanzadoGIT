@@ -34,9 +34,17 @@ for (var i = 0; i < ranking.length; i++) {
     }
 }
 rerun();
-
+console.log(position)
 
 for (var i = 0; i < 5; i++){
     var rank = document.getElementById(`pos${i + 1}`);
-    rank.innerHTML = `<p><strong>${position[i][0]}<br>${position[i][1]}</storng></p>`;
+    try {
+        if (i < 3) {
+            rank.innerHTML = `<p><strong>${position[i][0]}<br><br>Con ${position[i][1]} puntos</storng></p>`;
+        } else {
+            rank.innerHTML = `<p><strong>${position[i][0]}</strong></p><p><strong>Con ${position[i][1]} puntos</storng></p>`;
+        }
+    } catch {
+        rank.innerHTML = `<p><strong>Aún nadie a conquistado este puesto<br>aun puede ser tuyo</strong></p>`;
+    }
 }
