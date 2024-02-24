@@ -24,22 +24,31 @@ const Ranking = await getDocs(collection(db, "Ranking"));
 const Quiz = await getDocs(collection(db, "Preguntas"));
 
 export function getUsers() {
+  var id = "";
+  var usuario = "";
+  var contraseña = "";
   Users.forEach((doc) => {
-    var id = doc.id;
-    var usuario = doc.data()["Users"];
-    var contraseña = doc.data()["contraseña"];
+    id = doc.id;
+    usuario = doc.data()["Users"];
+    contraseña = doc.data()["contraseña"];
   });
 }
 
 export function getRanking() {
+  var id = [];
+  var aciertos = [];
+  var usuarios = [];
+
   Ranking.forEach((doc) => {
-    var id = doc.id;
-    var aciertos = doc.data()["aciertos"];
-    var usuario = doc.data()["usuario"]["id"];
-    Users.forEach((doc) => {
-      doc.id == usuario ? usuario = doc.data()["Users"]: usuario = usuario;
-    });
+    id.push(doc.id);
+    aciertos.push(doc.data()["aciertos"]);
+    var userId = doc.data()["usuario"]["id"];
+    var user = Users.find(user => user.id === userId);
+    usuarios.push(user);
+    console.log(usuarios)
   });
+
+  console.log(usuarios);
 }
 
 export function getPreguntas() {
