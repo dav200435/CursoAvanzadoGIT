@@ -70,6 +70,7 @@ function sendInfo(){
     correctAnswersCount;
 
 
+    correctAnswersCount=0;
     restartGame();
 }
 
