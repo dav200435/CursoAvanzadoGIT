@@ -38,5 +38,5 @@ rerun();
 
 for (var i = 0; i < 5; i++){
     var rank = document.getElementById(`pos${i + 1}`);
-    rank.innerHTML = `<p><strong>${position[i][0]}<br>${position[i][1]}</storng></p>`;
+    rank.innerHTML = `<p><strong>${position[i][0]}<br><br>Con ${position[i][1]} puntos</storng></p>`;
 }
