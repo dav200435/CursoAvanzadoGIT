@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trivia Game</title>
 </head>
 <body>
-    <div id="question-container"></div>
-    <script src="../JS/getQuestions.js"></script>
+
+<h1>Trivia Game</h1>
+<div id="correct-answers"><p>Respuestas correctas: <span id="correct-count">0</span></p></div>
+    <div id="questions"></div>
+    <script src="pruebas.js"></script>
+    <hr>
+    <button id="restart-btn" onclick="sendInfo(),restartGame()">Terminar</button>
 </body>
 </html>

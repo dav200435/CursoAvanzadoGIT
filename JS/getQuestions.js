@@ -1,53 +1,10 @@
-function questionsApi() {
-    return fetch("https://opentdb.com/api.php?amount=8&type=multiple")
-        .then(response => response.json())
-        .then(data => {
-            const processedData = data.results.map(result => {
-                return {
-                    category: result.category,
-                    type: result.type,
-                    difficulty: result.difficulty,
-                    question: result.question,
-                    correctAnswer: result.correct_answer,
-                    incorrectAnswers: result.incorrect_answers
-                };
-            });
-            mostrarTodasLasPreguntas(processedData);
-        });
-}
+let correctAnswersCount = 0;
+        let totalQuestions = 0;
 
-function mostrarTodasLasPreguntas(preguntas) {
-    const questionContainer = document.getElementById('question-container');
-
-    preguntas.forEach(pregunta => {
-        const questionElement = document.createElement("h2");
-        questionElement.textContent = pregunta.question;
-        questionContainer.appendChild(questionElement);
-
-        const allAnswers = pregunta.incorrectAnswers.concat(pregunta.correctAnswer);
-        const shuffledAnswers = shuffleArray(allAnswers);
-
-        shuffledAnswers.forEach(answer => {
-            const answerButton = document.createElement("button");
-            answerButton.textContent = answer;
-            answerButton.addEventListener("click", () => {
-                if (answer === pregunta.correctAnswer) {
-                    answerButton.style.backgroundColor = 'green'; 
-                    preguntasAcertadas++;
-                    console.log("¡Respuesta correcta!");
-                }else{
-                    answerButton.style.backgroundColor = 'red'; 
-                }
-                document.getElementById('contador-aciertos').textContent = `Preguntas acertadas: ${preguntasAcertadas}`;
-                const buttons = document.querySelectorAll('button');
-                buttons.forEach(button => {
-                    button.style.display = 'none';
-                });
-            });
-            questionContainer.appendChild(answerButton);
-            questionContainer.appendChild(document.createElement("br"));
-        });
-    });
+async function getQuestions() {
+    const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
+    const data = await response.json();
+    return data.results;
 }
 
 function shuffleArray(array) {
@@ -58,8 +15,59 @@ function shuffleArray(array) {
     return array;
 }
 
-var preguntasAcertadas = 0;
+async function displayQuestions() {
+    const questions = await getQuestions();
+    const questionsContainer = document.getElementById('questions');
+    const correctCountElement = document.getElementById('correct-count');
 
-window.onload = function() {
-    questionsApi();
-};
+    questionsContainer.innerHTML = ''; 
+    correctAnswersCount = 0; 
+    totalQuestions = questions.length;
+
+    questions.forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.innerHTML = `<p>${index + 1}. ${question.question}</p>`;
+
+        const answers = [...question.incorrect_answers, question.correct_answer];
+        const shuffledAnswers = shuffleArray(answers);
+
+        shuffledAnswers.forEach(answer => {
+            const button = document.createElement('button');
+            button.textContent = answer;
+            button.addEventListener('click', () => {
+                if (answer === question.correct_answer) {
+                    button.style.backgroundColor = "green";
+                    correctAnswersCount++;
+                    correctCountElement.textContent = correctAnswersCount;
+                } else {
+                    button.style.backgroundColor = "red";
+                    
+                }
+                const allButtons = questionElement.querySelectorAll('button');
+                allButtons.forEach(btn => {
+                    btn.disabled = true;
+                });
+
+                if (correctAnswersCount === totalQuestions) {
+                    document.getElementById('restart-btn').style.display = 'block'; 
+                }
+            });
+            questionElement.appendChild(button);
+        });
+
+        questionsContainer.appendChild(questionElement);
+    });
+}
+
+function restartGame() {
+    document.getElementById('restart-btn').style.display = 'none'; 
+    document.getElementById('questions').innerHTML = ''; 
+    document.getElementById('correct-count').textContent = '0'; 
+    displayQuestions();
+}
+
+function sendInfo(){
+    
+}
+
+displayQuestions();

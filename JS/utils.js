@@ -61,3 +61,7 @@ export function getPreguntas() {
   });
   return quiz;
 }
+
+export function getCorrects(){
+  
+}
