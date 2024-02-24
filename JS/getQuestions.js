@@ -12,19 +12,42 @@ function questionsApi() {
                     incorrectAnswers: result.incorrect_answers
                 };
             });
-            start(processedData);
+            mostrarTodasLasPreguntas(processedData);
         });
 }
 
-function start(questionData){
-
+function mostrarTodasLasPreguntas(preguntas) {
     const questionContainer = document.getElementById('question-container');
-    var question = document.createElement("h2");
-    question.appendChild(questionData.question);
-    var answer1 = createElement("input");
-    answer1.type="button";
-    answer1.name=""
 
+    preguntas.forEach(pregunta => {
+        const questionElement = document.createElement("h2");
+        questionElement.textContent = pregunta.question;
+        questionContainer.appendChild(questionElement);
+
+        const allAnswers = pregunta.incorrectAnswers.concat(pregunta.correctAnswer);
+        const shuffledAnswers = shuffleArray(allAnswers);
+
+        shuffledAnswers.forEach(answer => {
+            const answerButton = document.createElement("button");
+            answerButton.textContent = answer;
+            answerButton.addEventListener("click", () => {
+                if (answer === pregunta.correctAnswer) {
+                    answerButton.style.backgroundColor = 'green'; 
+                    preguntasAcertadas++;
+                    console.log("¡Respuesta correcta!");
+                }else{
+                    answerButton.style.backgroundColor = 'red'; 
+                }
+                document.getElementById('contador-aciertos').textContent = `Preguntas acertadas: ${preguntasAcertadas}`;
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.style.display = 'none';
+                });
+            });
+            questionContainer.appendChild(answerButton);
+            questionContainer.appendChild(document.createElement("br"));
+        });
+    });
 }
 
 function shuffleArray(array) {
@@ -34,3 +57,9 @@ function shuffleArray(array) {
     }
     return array;
 }
+
+var preguntasAcertadas = 0;
+
+window.onload = function() {
+    questionsApi();
+};
