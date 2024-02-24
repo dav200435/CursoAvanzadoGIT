@@ -74,7 +74,4 @@ function sendInfo(){
     restartGame();
 }
 
-
-if(localStorage.loggedIn){
-    displayQuestions();
-}
+displayQuestions();

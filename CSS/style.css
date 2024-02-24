@@ -51,6 +51,7 @@ nav .barranav div a {
 }
 
 #pos1 {
+   margin-top: 10%;
    font-size: 15px;
    background-repeat: no-repeat;
    background-image: url("../IMAGES/posicion1.png");
@@ -59,6 +60,7 @@ nav .barranav div a {
 }
 
 #pos2 {
+   margin-top: 10%;
    font-size: 15px;
    background-repeat: no-repeat;
    background-image: url("../IMAGES/posicion2.png");
@@ -67,6 +69,7 @@ nav .barranav div a {
 }
 
 #pos3 {
+   margin-top: 10%;
    font-size: 15px;
    background-repeat: no-repeat;
    background-image: url("../IMAGES/posicion3.png");
@@ -117,4 +120,8 @@ body {
 .QUIZ a {
    text-decoration: none;
    color: black;
+}
+
+#correct-answers{
+   margin-top: 7%;
 }
