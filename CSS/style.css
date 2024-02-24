@@ -35,19 +35,63 @@ body .QUIZ{
 
 #podio{
    display: flex;
-   justify-content: space-around;
-}
-
-.reverse {
-   color: red;
-   display: flex;
-   flex-direction: wrap-reverse;
+   justify-content: space-between;
 }
 
 #podio div{
    text-align: center;
+   padding: 50px;
+}
+
+#pos1 {
+   font-size: 15px;
+   background-repeat: no-repeat;
+   background-image: url("../IMAGES/posicion1.png");
+   background-size: 180px 180px;
+   width: 85px;
+}
+
+#pos2 {
+   font-size: 15px;
+   background-repeat: no-repeat;
+   background-image: url("../IMAGES/posicion2.png");
+   background-size: 180px 180px;
+   width: 85px;
+}
+
+#pos3 {
+   font-size: 15px;
+   background-repeat: no-repeat;
+   background-image: url("../IMAGES/posicion3.png");
+   background-size: 180px 180px;
+   width: 85px;
 }
 
 #finalistas {
    display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 50px;
+}
+
+#finalistas div {
+   width: 50%;
+   border: 3px solid black;
+   display: flex;
+   justify-content: space-between;
+}
+
+#finalistas div p {
+   margin-left: 15px;
+   margin-right: 15px;
+}
+
+#pos4 {
+   background-repeat: no-repeat;
+   background-color: rgb(255, 141, 255);
+}
+
+#pos5 {
+   background-repeat: no-repeat;
+   background-color: rgb(255, 141, 255);
 }
