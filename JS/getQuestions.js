@@ -1,5 +1,5 @@
 let correctAnswersCount = 0;
-        let totalQuestions = 0;
+let totalQuestions = 0;
 
 async function getQuestions() {
     const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
@@ -74,4 +74,7 @@ function sendInfo(){
     restartGame();
 }
 
-displayQuestions();
+
+if(localStorage.loggedIn){
+    displayQuestions();
+}
