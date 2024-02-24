@@ -15,6 +15,7 @@ function shuffleArray(array) {
     return array;
 }
 
+//hay veces que no funciona ya que falla la peticion con la api de preguntas
 async function displayQuestions() {
     const questions = await getQuestions();
     const questionsContainer = document.getElementById('questions');
@@ -67,7 +68,7 @@ function restartGame() {
 }
 
 function sendInfo(){
-    
+
 }
 
 displayQuestions();
