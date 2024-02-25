@@ -69,6 +69,7 @@ async function displayQuestions() {
 function restartGame() {
     document.getElementById('questions').innerHTML = ''; 
     document.getElementById('correct-count').textContent = '0'; 
+    correctAnswersCount=0;
     displayQuestions();
 }
 
