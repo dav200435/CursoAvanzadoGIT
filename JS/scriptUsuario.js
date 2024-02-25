@@ -29,21 +29,18 @@ function enviarRegistro() {
 
 function enviarInicioSesion() {
     var correcto = false;
-    var posicion = 0;
+    var posicion = -1;
     document.getElementById('task-form1').addEventListener('submit', function(event) {
         event.preventDefault();
         var username = document.getElementById('task-title1').value;
         var password = document.getElementById('task-description1').value;
-        console.log(username)
-        console.log(password)
         for (var i = 0; i < usuarios.length; i++) {
             if (usuarios[i][1] === username && usuarios[i][2] === password) {
                 correcto = true;
                 posicion = i;
-            } else {
-                correcto = false;
+                break;
             }
-          }
+        }
 
         if (correcto) {
             localStorage.userId = usuarios[posicion][0];

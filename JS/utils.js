@@ -64,8 +64,6 @@ export function getPreguntas() {
     quiz.push([categoria, correcta, dificultad, incorrectas, preguntas, tipoPregunta]);
   });
   return quiz;
-<<<<<<< HEAD
-=======
 }
 
 export async function registro(username, password, id) {
@@ -75,5 +73,4 @@ export async function registro(username, password, id) {
 export async function ranking(usernameId, id) {
   const userDocRef = doc(db, "Users", usernameId);
   await setDoc(doc(db, "Ranking", id), {usuario: userDocRef, aciertos: 0})
->>>>>>> 6d1049b404275de4a2dcd8762c0a8acf1c1750a2
 }
