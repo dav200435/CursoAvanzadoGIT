@@ -22,7 +22,7 @@ function shuffleArray(array) {
 }
 
 async function displayQuestions() {
-    const preguntasExternas = await getQuestions(); // Corrección aquí
+    const preguntasExternas = await getQuestions();
     const preguntasLocales = getPreguntas();
 
     const preguntasExternasAleatorias = shuffleArray(preguntasExternas);
@@ -37,9 +37,8 @@ async function displayQuestions() {
         const opciones = pregunta[3] ? pregunta[3] : [...pregunta.incorrect_answers, pregunta.correct_answer];
         const respuestaCorrecta = pregunta[1] ? pregunta[1] : pregunta.correct_answer;
         
-        // Asegúrate de tener 4 opciones por pregunta
         while (opciones.length < 4) {
-            opciones.push(respuestaCorrecta); // Sustituir la opción adicional por la respuesta correcta
+            opciones.push(respuestaCorrecta); 
         }
         
         const shuffledOptions = shuffleArray(opciones);
@@ -50,6 +49,8 @@ async function displayQuestions() {
             button.addEventListener('click', () => {
                 if (option === respuestaCorrecta) {
                     button.style.backgroundColor = "green";
+                    correctAnswersCount++;
+                    document.getElementById('correct-count').textContent = correctAnswersCount.toString();
                 } else {
                     button.style.backgroundColor = "red";
                 }
@@ -67,14 +68,9 @@ async function displayQuestions() {
     });
 }
 
-
-// Llamar a la función para mostrar las preguntas cuando la página se cargue
-displayQuestions();
-
 function restartGame() {
     document.getElementById('questions').innerHTML = ''; 
     document.getElementById('correct-count').textContent = '0'; 
-    correctAnswersCount=0;
     displayQuestions();
 }
 
