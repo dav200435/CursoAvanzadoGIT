@@ -5,7 +5,6 @@ import {
   getDocs,
   doc,
   setDoc,
-  deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -67,3 +66,11 @@ export function getPreguntas() {
   return quiz;
 }
 
+export async function registro(username, password, id) {
+  await setDoc(doc(db, "Users", id), {Users: username, contraseña: password});
+}
+
+export async function ranking(usernameId, id) {
+  const userDocRef = doc(db, "Users", usernameId);
+  await setDoc(doc(db, "Ranking", id), {usuario: userDocRef, aciertos: 0})
+}
