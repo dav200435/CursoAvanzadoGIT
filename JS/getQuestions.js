@@ -70,6 +70,7 @@ function restartGame() {
 
 async function sendInfo(){
     correctAnswersCount;
+    /*
     const id = localStorage.getItem(userId);
     for (var i=0; i<getRanking().length;i++){
         if (id === getRanking()[i][0]){
@@ -78,6 +79,8 @@ async function sendInfo(){
             ranking(getRanking()[i][1],id,correctAnswersCount);
         }
     }
+    Esto se comenta ya que corresponde al codigo del error de arriba y necesito que el boton funcione por lo menos
+    */
     correctAnswersCount=0;
     restartGame();
 }
