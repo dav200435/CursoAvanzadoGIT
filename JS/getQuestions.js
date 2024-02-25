@@ -1,7 +1,5 @@
 import { getRanking , ranking } from "./utils.js";
 import { getPreguntas } from "./utils.js";
-//si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
-//Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
 
 let correctAnswersCount = 0;
 
