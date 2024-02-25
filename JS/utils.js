@@ -66,3 +66,4 @@ export function getPreguntas() {
   });
   return quiz;
 }
+

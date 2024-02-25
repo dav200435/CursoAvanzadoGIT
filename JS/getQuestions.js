@@ -61,8 +61,7 @@ async function displayQuestions() {
 }
 
 function restartGame() {
-    document.getElementById('questions').innerHTML = ''; 
-    document.getElementById('correct-count').textContent = '0'; 
+    document.getElementById('questions').innerHTML = '';
     displayQuestions();
 }
 
@@ -74,4 +73,15 @@ function sendInfo(){
     restartGame();
 }
 
-displayQuestions();
+function checkSession() {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (!loggedIn) {
+        window.location.href = "Login.html";
+        alert("Inicie sesión porfavor");
+    }else{
+        displayQuestions();
+    }
+}
+
+checkSession();
+
