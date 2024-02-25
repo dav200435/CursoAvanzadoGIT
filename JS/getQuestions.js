@@ -1,4 +1,4 @@
-import { getRanking , ranking } from "./utils"; 
+//import { getRanking , ranking } from "./utils"; 
 //si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
 //Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
 
@@ -65,9 +65,11 @@ async function displayQuestions() {
 function restartGame() {
     document.getElementById('questions').innerHTML = ''; 
     document.getElementById('correct-count').textContent = '0'; 
+    correctAnswersCount=0;
     displayQuestions();
 }
 
+//esto no funciona
 function sendInfo() {
     correctAnswersCount;
     const id = localStorage.getItem(userId);
@@ -95,4 +97,4 @@ function checkSession() {
 
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
-document.getElementById('restart-btn').addEventListener('click', sendInfo);
+document.getElementById('restart-btn').addEventListener('click', restartGame);
