@@ -1,4 +1,4 @@
-//import { getRanking , ranking } from "./utils"; 
+import { getRanking , ranking } from "./utils"; 
 //si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
 //Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
 
@@ -68,9 +68,8 @@ function restartGame() {
     displayQuestions();
 }
 
-async function sendInfo(){
+function sendInfo() {
     correctAnswersCount;
-    /*
     const id = localStorage.getItem(userId);
     for (var i=0; i<getRanking().length;i++){
         if (id === getRanking()[i][0]){
@@ -79,8 +78,6 @@ async function sendInfo(){
             ranking(getRanking()[i][1],id,correctAnswersCount);
         }
     }
-    Esto se comenta ya que corresponde al codigo del error de arriba y necesito que el boton funcione por lo menos
-    */
     correctAnswersCount=0;
     restartGame();
 }
