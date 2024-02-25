@@ -5,7 +5,7 @@ var usuarios = getUsers();
 
 function enviarRegistro() {
     var userID = randomID();
-    var noExiste = false;
+    var noExiste = true;
     document.getElementById('task-form').addEventListener('submit', function(event) {
         event.preventDefault();
         var username = document.getElementById('task-title').value;
@@ -13,10 +13,9 @@ function enviarRegistro() {
         for (var i = 0; i < usuarios.length; i++) {
             if (usuarios[i][1] === username) {
                 noExiste = false;
-            } else {
-                noExiste = true;
+                break;
             }
-          }
+        }
         
         if (noExiste == true) {
             registro(username, password, userID);
