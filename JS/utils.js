@@ -64,16 +64,13 @@ export function getPreguntas() {
     quiz.push([categoria, correcta, dificultad, incorrectas, preguntas, tipoPregunta]);
   });
   return quiz;
-<<<<<<< HEAD
-=======
 }
 
 export async function registro(username, password, id) {
   await setDoc(doc(db, "Users", id), {Users: username, contraseña: password});
 }
 
-export async function ranking(usernameId, id) {
+export async function ranking(usernameId, id, points=0) {
   const userDocRef = doc(db, "Users", usernameId);
-  await setDoc(doc(db, "Ranking", id), {usuario: userDocRef, aciertos: 0})
->>>>>>> 6d1049b404275de4a2dcd8762c0a8acf1c1750a2
+  await setDoc(doc(db, "Ranking", id), {usuario: userDocRef, aciertos: points})
 }
