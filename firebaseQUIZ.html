@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRUD Firebase</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css"
+            integrity="sha384-L7+YG8QLqGvxQGffJ6utDKFwmGwtLcCjtwvonVZR/Ba2VzhpMwBz51GaXnUsuYbj" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
+            <div class="card-body">
+                <form id="task-form">
+                    <input type="text" id="task-title" class="form-control" placeholder="nombre de usuario (mínimo 6 caracteres)"
+                        autofocus>
+                    <textarea id="task-description" class="form-control" placeholder="contraseña (minimo 6 caracteres que contenga una mayúscula y un número)"
+                        ></textarea>
+                    <br>
+
+                    <input type="submit" value="registrarse" class="btn btn-lg btn-primary" id="task-button">
+
+                </form>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
+            <div class="card-body">
+                <form id="task-form">
+                    <input type="text" id="task-title" class="form-control" placeholder="nombre de usuario"
+                        autofocus>
+                    <textarea id="task-description" class="form-control" placeholder="contraseña"
+                        ></textarea>
+                    <br>
+
+                    <input type="submit" value="iniciar sesion" class="btn btn-lg btn-primary" id="task-button">
+
+                </form>
+
+            </div>
+        </div>
+        <br>
+        <script src = "firebaseQUIZ.js" type="module"></script>
+    </body>
+</html>

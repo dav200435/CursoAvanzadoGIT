@@ -26,6 +26,7 @@ const Quiz = await getDocs(collection(db, "Preguntas"));
 // Este ejemplo vale para el resto de funciones exportadas.
 // Al utilizar la funcion sacara una lista con [id, usuario, contraseña], teniendo distintos id en distintas listas.
 export function getUsers() {
+
   var users = []
   Users.forEach((doc) => {
     var id = doc.id;
@@ -37,6 +38,7 @@ export function getUsers() {
 }
 
 export function getRanking() {
+
   var userAciertos = [];
   Ranking.forEach((doc) => {
     var id = doc.id;

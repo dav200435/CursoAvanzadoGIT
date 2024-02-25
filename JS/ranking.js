@@ -34,6 +34,7 @@ for (var i = 0; i < ranking.length; i++) {
     }
 }
 rerun();
+<<<<<<< HEAD
 console.log(position)
 
 for (var i = 0; i < 5; i++){
@@ -47,4 +48,11 @@ for (var i = 0; i < 5; i++){
     } catch {
         rank.innerHTML = `<p><strong>Aún nadie a conquistado este puesto<br>aun puede ser tuyo</strong></p>`;
     }
+=======
+
+
+for (var i = 0; i < 5; i++){
+    var rank = document.getElementById(`pos${i + 1}`);
+    rank.innerHTML = `<p><strong>${position[i][0]}<br>${position[i][1]}</storng></p>`;
+>>>>>>> 2d7ee3191249910a35ed27a762df6d488a7a3acb
 }

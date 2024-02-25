@@ -4,6 +4,7 @@
 
 let correctAnswersCount = 0;
 
+
 async function getQuestions() {
     const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
     const data = await response.json();
@@ -21,6 +22,7 @@ function shuffleArray(array) {
 //hay veces que no funciona ya que falla la peticion con la api de preguntas si reinicias deveria funcionar
 async function displayQuestions() {
     var questions = await getQuestions();
+
     const questionsContainer = document.getElementById('questions');
     const correctCountElement = document.getElementById('correct-count');
 
@@ -80,6 +82,7 @@ function sendInfo() {
             ranking(getRanking()[i][1],id,correctAnswersCount);
         }
     }
+
     correctAnswersCount=0;
     restartGame();
 }
@@ -98,3 +101,4 @@ function checkSession() {
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
 document.getElementById('restart-btn').addEventListener('click', restartGame);
+
