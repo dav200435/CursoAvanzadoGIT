@@ -2,10 +2,7 @@
 
 ## Quiz
 
-## to do:
 
-subir respuestas correctas a db 
+# Angel no ha hecho nada solo copio un formulario ya hecho por ti y lo pegó. No es porque no tubiese nada que hacer 
 
-# css: podeis descargar el scalidraw para fijaros mejor del formato
-
-# cualquier duda contactad por discord o watsapp con cualquier otro si esa persona no sabe arrastrad a otro
+# Este comentario es muestra de ello ya que en el readme estabamos poniendo todo el rato los to do que quedaban por hacer
