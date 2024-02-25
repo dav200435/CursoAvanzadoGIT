@@ -2,6 +2,23 @@
 //si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
 //Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
 
+function sendInfo(){
+    correctAnswersCount;
+    /*
+    const id = localStorage.getItem(userId);
+    for (var i=0; i<getRanking().length;i++){
+        if (id === getRanking()[i][0]){
+            var currentCorrect = getRanking()[i][2];
+            correctAnswersCount += currentCorrect;
+            ranking(getRanking()[i][1],id,correctAnswersCount);
+        }
+    }
+    Esto se comenta ya que corresponde al codigo del error de arriba y necesito que el boton funcione por lo menos
+    */
+    correctAnswersCount=0;
+    restartGame();
+}
+
 let correctAnswersCount = 0;
 
 async function getQuestions() {
@@ -20,12 +37,12 @@ function shuffleArray(array) {
 
 //hay veces que no funciona ya que falla la peticion con la api de preguntas si reinicias deveria funcionar
 async function displayQuestions() {
-    const questions = await getQuestions();
+    var questions = await getQuestions();
     const questionsContainer = document.getElementById('questions');
     const correctCountElement = document.getElementById('correct-count');
 
     questionsContainer.innerHTML = ''; 
-    var totalQuestions = questions.length;
+    const totalQuestions = questions.length;
 
     questions.forEach((question, index) => {
         const questionElement = document.createElement('div');
@@ -68,23 +85,6 @@ function restartGame() {
     displayQuestions();
 }
 
-async function sendInfo(){
-    correctAnswersCount;
-    /*
-    const id = localStorage.getItem(userId);
-    for (var i=0; i<getRanking().length;i++){
-        if (id === getRanking()[i][0]){
-            var currentCorrect = getRanking()[i][2];
-            correctAnswersCount += currentCorrect;
-            ranking(getRanking()[i][1],id,correctAnswersCount);
-        }
-    }
-    Esto se comenta ya que corresponde al codigo del error de arriba y necesito que el boton funcione por lo menos
-    */
-    correctAnswersCount=0;
-    restartGame();
-}
-
 function checkSession() {
   const loggedIn = localStorage.getItem('loggedIn');
   if (!loggedIn) {
@@ -95,5 +95,7 @@ function checkSession() {
   }
 }
 
+
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
+document.getElementById('restart-btn').addEventListener('click', sendInfo);
