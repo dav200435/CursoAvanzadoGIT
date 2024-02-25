@@ -1,17 +1,4 @@
-import { getRanking , ranking } from "./utils.js";
-import { getPreguntas } from "./utils.js";
-//si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
-//Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
-
-let correctAnswersCount = 0;
-
-async function getQuestions() {
-    const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
-    const data = await response.json();
-    return data.results;
-}
-
-
+import { getPreguntas } from "../JS/utils.js";
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -67,45 +54,12 @@ async function displayQuestions() {
     });
 }
 
+// Función para obtener preguntas de la API
+async function getQuestions() { // Corrección aquí
+    const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
+    const data = await response.json();
+    return data.results;
+}
 
 // Llamar a la función para mostrar las preguntas cuando la página se cargue
 displayQuestions();
-
-function restartGame() {
-    document.getElementById('questions').innerHTML = ''; 
-    document.getElementById('correct-count').textContent = '0'; 
-    correctAnswersCount=0;
-    displayQuestions();
-}
-
-//esto no funciona
-function sendInfo() {
-    correctAnswersCount;
-    const id = localStorage.getItem(userId);
-    for (var i=0; i<getRanking().length;i++){
-        if (id === getRanking()[i][0]){
-            var currentCorrect = getRanking()[i][2];
-            correctAnswersCount += currentCorrect;
-            ranking(getRanking()[i][1],id,correctAnswersCount);
-        }
-    }
-
-    correctAnswersCount=0;
-    restartGame();
-}
-
-function checkSession() {
-  const loggedIn = localStorage.getItem('loggedIn');
-  if (!loggedIn) {
-    // Si la sesión no está iniciada, redirigir al usuario al documento de inicio de sesión
-    window.location.href = "Login.html";
-  }else{
-    displayQuestions();
-  }
-}
-
-
-// Llamar a la función para verificar la sesión al cargar la página
-checkSession();
-document.getElementById('restart-btn').addEventListener('click', restartGame);
-
