@@ -20,12 +20,12 @@ function shuffleArray(array) {
 
 //hay veces que no funciona ya que falla la peticion con la api de preguntas si reinicias deveria funcionar
 async function displayQuestions() {
-    const questions = await getQuestions();
+    var questions = await getQuestions();
     const questionsContainer = document.getElementById('questions');
     const correctCountElement = document.getElementById('correct-count');
 
     questionsContainer.innerHTML = ''; 
-    var totalQuestions = questions.length;
+    const totalQuestions = questions.length;
 
     questions.forEach((question, index) => {
         const questionElement = document.createElement('div');
@@ -92,5 +92,7 @@ function checkSession() {
   }
 }
 
+
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
+document.getElementById('restart-btn').addEventListener('click', sendInfo);
