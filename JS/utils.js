@@ -70,7 +70,11 @@ export async function registro(username, password, id) {
   await setDoc(doc(db, "Users", id), {Users: username, contraseña: password});
 }
 
+<<<<<<< HEAD
 export async function ranking(usernameId, id, points = 0) {
+=======
+export async function ranking(usernameId, id, points=0) {
+>>>>>>> dario
   const userDocRef = doc(db, "Users", usernameId);
   await setDoc(doc(db, "Ranking", id), {usuario: userDocRef, aciertos: points})
 }
