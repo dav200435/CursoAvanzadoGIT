@@ -53,7 +53,7 @@ export function getRanking() {
 
 export function getPreguntas() {
   var id = [];
-  var quiz = []
+  var quiz = [];
   Quiz.forEach((doc) => {
     id.push(doc.id);
     var categoria = doc.data()["category"];
@@ -66,4 +66,3 @@ export function getPreguntas() {
   });
   return quiz;
 }
-

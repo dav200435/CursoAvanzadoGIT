@@ -1,3 +1,5 @@
+import { getRanking } from "./utils"; 
+
 let correctAnswersCount = 0;
 let totalQuestions = 0;
 
@@ -61,27 +63,34 @@ async function displayQuestions() {
 }
 
 function restartGame() {
-    document.getElementById('questions').innerHTML = '';
+    document.getElementById('questions').innerHTML = ''; 
+    document.getElementById('correct-count').textContent = '0'; 
     displayQuestions();
 }
 
 function sendInfo(){
     correctAnswersCount;
-
-
+    const id = localStorage.getItem(userId);
+    for (var i=0; i<getRanking().length;i++){
+        if (id === getRanking()[i][0]){
+            var correntCorrect = getRanking()[i][2];
+            var update = correctAnswersCount + correntCorrect;
+            getRanking[i][2] = update;
+        }
+    }
     correctAnswersCount=0;
     restartGame();
 }
 
+
 function checkSession() {
-    const loggedIn = localStorage.getItem('loggedIn');
-    if (!loggedIn) {
-        window.location.href = "Login.html";
-        alert("Inicie sesión porfavor");
-    }else{
-        displayQuestions();
-    }
+  const loggedIn = localStorage.getItem('loggedIn');
+  if (!loggedIn) {
+    // Si la sesión no está iniciada, redirigir al usuario al documento de inicio de sesión
+    window.location.href = "Login.html";
+  }
 }
 
+// Llamar a la función para verificar la sesión al cargar la página
 checkSession();
-
+displayQuestions();
