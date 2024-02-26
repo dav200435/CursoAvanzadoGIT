@@ -1,15 +1,15 @@
-//import { getRanking , ranking } from "./utils";
-//si se descomenta esta linea da el siguiente error: Se bloqueó la carga de un módulo de “http://127.0.0.1:5500/JS/utils” debido a un tipo MIME no permitido (“text/html”).game.html
-//Ha fallado la carga del módulo con origen "http://127.0.0.1:5500/JS/utils".
+import { getRanking , ranking } from "./utils.js";
+import { getPreguntas } from "./utils.js";
 
 let correctAnswersCount = 0;
-
 
 async function getQuestions() {
     const response = await fetch('https://opentdb.com/api.php?amount=8&type=multiple');
     const data = await response.json();
     return data.results;
 }
+
+
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -19,47 +19,49 @@ function shuffleArray(array) {
     return array;
 }
 
-//hay veces que no funciona ya que falla la peticion con la api de preguntas si reinicias deveria funcionar
 async function displayQuestions() {
-    var questions = await getQuestions();
+    const preguntasExternas = await getQuestions();
+    const preguntasLocales = getPreguntas();
+
+    const preguntasExternasAleatorias = shuffleArray(preguntasExternas);
+    const preguntas = preguntasExternasAleatorias.concat(preguntasLocales.slice(0, 2));     
 
     const questionsContainer = document.getElementById('questions');
-    const correctCountElement = document.getElementById('correct-count');
-
-    questionsContainer.innerHTML = ''; 
-    const totalQuestions = questions.length;
-
-    questions.forEach((question, index) => {
+    
+    preguntas.forEach((pregunta, index) => {
         const questionElement = document.createElement('div');
-        questionElement.innerHTML = `<p>${index + 1}. ${question.question}</p>`;
-
-        const answers = [...question.incorrect_answers, question.correct_answer];
-        const shuffledAnswers = shuffleArray(answers);
-
-        shuffledAnswers.forEach(answer => {
+        questionElement.innerHTML = `<p>${index + 1}. ${pregunta[4] || pregunta.question}</p>`;
+        
+        const opciones = pregunta[3] ? pregunta[3] : [...pregunta.incorrect_answers, pregunta.correct_answer];
+        const respuestaCorrecta = pregunta[1] ? pregunta[1] : pregunta.correct_answer;
+        
+        while (opciones.length < 4) {
+            opciones.push(respuestaCorrecta); 
+        }
+        
+        const shuffledOptions = shuffleArray(opciones);
+        
+        shuffledOptions.forEach(option => {
             const button = document.createElement('button');
-            button.textContent = answer;
+            button.textContent = option;
             button.addEventListener('click', () => {
-                if (answer === question.correct_answer) {
+                if (option === respuestaCorrecta) {
                     button.style.backgroundColor = "green";
                     correctAnswersCount++;
-                    correctCountElement.textContent = correctAnswersCount;
+                    document.getElementById('correct-count').textContent = correctAnswersCount.toString();
                 } else {
                     button.style.backgroundColor = "red";
-                    
                 }
+
+                // Deshabilitar todos los botones después de la selección
                 const allButtons = questionElement.querySelectorAll('button');
                 allButtons.forEach(btn => {
                     btn.disabled = true;
                 });
-
-                if (correctAnswersCount === totalQuestions) {
-                    document.getElementById('restart-btn').style.display = 'block'; 
-                }
             });
             questionElement.appendChild(button);
         });
-
+        
         questionsContainer.appendChild(questionElement);
     });
 }
