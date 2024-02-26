@@ -9,8 +9,6 @@ async function getQuestions() {
     return data.results;
 }
 
-
-
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -20,17 +18,18 @@ function shuffleArray(array) {
 }
 
 //esto no funciona
-export function sendInfo() {
+function sendInfo() {
     console.log("¡La función sendInfo() se ha llamado!");
-    const id =`/Users/${localStorage.getItem(userId)}`;
-    for (var i=0; i<getRanking().length;i++){
-        if (getRanking()[i][2]== id){
-            var points = correctAnswersCount+getRanking()[i][1];
-            ranking(localStorage.getItem(userId) ,getRanking()[i][0], points)
+    const tierlist = getRanking()
+    const localId =localStorage.userId
+    const id =`/Users/${localId}`;
+    for (var i=0; i<tierlist.length;i++){
+        if (tierlist[i][2]== id){
+            var points = correctAnswersCount+tierlist[i][1];
+            ranking(localId ,tierlist[i][0], points)
         }
     }
     correctAnswersCount=0;
-    restartGame();
 }
 
 async function displayQuestions() {
@@ -52,9 +51,8 @@ async function displayQuestions() {
         const opciones = pregunta[3] ? pregunta[3] : [...pregunta.incorrect_answers, pregunta.correct_answer];
         const respuestaCorrecta = pregunta[1] ? pregunta[1] : pregunta.correct_answer;
         
-        // Asegúrate de tener 4 opciones por pregunta
         while (opciones.length < 4) {
-            opciones.push(respuestaCorrecta); // Sustituir la opción adicional por la respuesta correcta
+            opciones.push(respuestaCorrecta);
         }
         
         const shuffledOptions = shuffleArray(opciones);
@@ -65,6 +63,8 @@ async function displayQuestions() {
             button.addEventListener('click', () => {
                 if (option === respuestaCorrecta) {
                     button.style.backgroundColor = "green";
+                    correctAnswersCount++; 
+                    document.getElementById('correct-count').textContent = correctAnswersCount;
                 } else {
                     button.style.backgroundColor = "red";
                 }
@@ -83,6 +83,7 @@ async function displayQuestions() {
 }
 
 function restartGame() {
+    sendInfo();
     document.getElementById('questions').innerHTML = ''; 
     document.getElementById('correct-count').textContent = '0'; 
     correctAnswersCount=0;
@@ -101,3 +102,4 @@ function checkSession() {
 
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
+document.getElementById("restart-btn").addEventListener("click", restartGame);
