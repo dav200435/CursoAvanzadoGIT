@@ -20,6 +20,7 @@ function enviarRegistro() {
         if (noExiste == true) {
             registro(username, password, userID);
             ranking(userID, randomID());
+            alert(`Te has registrado correctamente ${username}, recarga la página para podern iniciar sesion`)
         } else {
             alert("Nombre de usuario ya existente");
         }
@@ -44,6 +45,7 @@ function enviarInicioSesion() {
         if (correcto) {
             localStorage.userId = usuarios[posicion][0];
             localStorage.loggedIn = true;
+            alert(`Has iniciado sesion correctamente ${username}`)
         } else {
             alert("Nombre o contraseña incorrectas");
         }
