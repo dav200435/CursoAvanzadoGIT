@@ -16,7 +16,7 @@ function enviarRegistro() {
         // Este for de aqui comprueba la lista de usuarios sección por sección para comprobar que el nombre no este repetido.
         // Además de comprobar que no le hemos pasado los datos vacios.
         for (var i = 0; i < usuarios.length; i++) {
-            if (usuarios[i][1] === username && username == "" || password == "") {
+            if (usuarios[i][1] === username || username == "" || password == "") {
                 noExiste = false;
                 break;
             }
