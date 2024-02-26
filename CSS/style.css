@@ -1,4 +1,7 @@
-
+nav button  {
+   font-size: 20px; /* Tamaño de fuente */
+   padding: 10px 80px; /* Relleno del botón */
+}
 
 nav{
    display:grid;
@@ -127,4 +130,7 @@ body {
 
 .register{
    margin-top: 7%;
+}
+audio{
+   margin-top: 10%;
 }
