@@ -19,6 +19,20 @@ function shuffleArray(array) {
     return array;
 }
 
+//esto no funciona
+export function sendInfo() {
+    console.log("¡La función sendInfo() se ha llamado!");
+    const id =`/Users/${localStorage.getItem(userId)}`;
+    for (var i=0; i<getRanking().length;i++){
+        if (getRanking()[i][2]== id){
+            var points = correctAnswersCount+getRanking()[i][1];
+            ranking(localStorage.getItem(userId) ,getRanking()[i][0], points)
+        }
+    }
+    correctAnswersCount=0;
+    restartGame();
+}
+
 async function displayQuestions() {
     const preguntasExternas = await getQuestions();
     const preguntasLocales = getPreguntas();
@@ -71,19 +85,6 @@ function restartGame() {
     document.getElementById('correct-count').textContent = '0'; 
     correctAnswersCount=0;
     displayQuestions();
-}
-
-//esto no funciona
-function sendInfo() {
-    const id =`/Users/${localStorage.getItem(userId)}`;
-    for (var i=0; i<getRanking().length;i++){
-        if (getRanking()[i][2]== id){
-            var points = correctAnswersCount+getRanking()[i][1];
-            ranking(localStorage.getItem(userId) ,getRanking()[i][0], points)
-        }
-    }
-    correctAnswersCount=0;
-    restartGame();
 }
 
 function checkSession() {
