@@ -16,6 +16,8 @@ const firebaseConfig = {
   appId: "1:336623719831:web:0ee8f133929c264ed7e0d2"
 };
 
+
+// Guardamos en constantes las tablas Users, Ranking y Quiz de nuestra de datos firebase.
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const Users = await getDocs(collection(db, "Users"));
@@ -23,7 +25,7 @@ const Ranking = await getDocs(collection(db, "Ranking"));
 const Quiz = await getDocs(collection(db, "Preguntas"));
 
 
-// Este ejemplo vale para el resto de funciones exportadas.
+// Este ejemplo vale para las tres funciones get.
 // Al utilizar la funcion sacara una lista con [id, usuario, contraseña], teniendo distintos id en distintas listas.
 export function getUsers() {
 
@@ -68,6 +70,8 @@ export function getPreguntas() {
   return quiz;
 }
 
+
+// Este ejemplo vale para las funciones asicronas, las cules crean a los nuevos usuarios y sus posiciones en el ranking
 export async function registro(username, password, id) {
   await setDoc(doc(db, "Users", id), {Users: username, contraseña: password});
 }
