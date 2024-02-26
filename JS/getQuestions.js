@@ -23,8 +23,11 @@ async function displayQuestions() {
     const preguntasExternas = await getQuestions();
     const preguntasLocales = getPreguntas();
 
+    // Obtener dos preguntas aleatorias de las preguntas locales
+    const preguntasLocalesAleatorias = shuffleArray(preguntasLocales).slice(0, 2);
+
     const preguntasExternasAleatorias = shuffleArray(preguntasExternas);
-    const preguntas = preguntasExternasAleatorias.concat(preguntasLocales.slice(0, 2));     
+    const preguntas = preguntasExternasAleatorias.concat(preguntasLocalesAleatorias);     
 
     const questionsContainer = document.getElementById('questions');
     
@@ -35,8 +38,9 @@ async function displayQuestions() {
         const opciones = pregunta[3] ? pregunta[3] : [...pregunta.incorrect_answers, pregunta.correct_answer];
         const respuestaCorrecta = pregunta[1] ? pregunta[1] : pregunta.correct_answer;
         
+        // Asegúrate de tener 4 opciones por pregunta
         while (opciones.length < 4) {
-            opciones.push(respuestaCorrecta); 
+            opciones.push(respuestaCorrecta); // Sustituir la opción adicional por la respuesta correcta
         }
         
         const shuffledOptions = shuffleArray(opciones);
@@ -47,8 +51,6 @@ async function displayQuestions() {
             button.addEventListener('click', () => {
                 if (option === respuestaCorrecta) {
                     button.style.backgroundColor = "green";
-                    correctAnswersCount++;
-                    document.getElementById('correct-count').textContent = correctAnswersCount.toString();
                 } else {
                     button.style.backgroundColor = "red";
                 }
