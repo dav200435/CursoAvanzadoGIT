@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
-    <script src="../JS/getQuestions.js" type="module" defer></script>
     <nav>
         <div class='barranav'>
           <blockquote><div><button type="button"><a href="Login.html">INICIO SESION</a></button></div></blockquote>
@@ -23,6 +22,7 @@
 <div id="correct-answers"><p>Respuestas correctas: <span id="correct-count">0</span></p></div>
     <div id="questions"></div>
     <hr>
-    <button id="restart-btn" onclick="sendInfo();">volver a jugar</button>
+    <button id="restart-btn" onclick="sendInfo()">volver a jugar</button>
+    <script src="../JS/getQuestions.js" type="module" defer></script>
 </body>
 </html>

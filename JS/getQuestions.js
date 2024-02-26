@@ -75,16 +75,13 @@ function restartGame() {
 
 //esto no funciona
 function sendInfo() {
-    correctAnswersCount;
-    const id = localStorage.getItem(userId);
+    const id =`/Users/${localStorage.getItem(userId)}`;
     for (var i=0; i<getRanking().length;i++){
-        if (id === getRanking()[i][0]){
-            var currentCorrect = getRanking()[i][2];
-            correctAnswersCount += currentCorrect;
-            ranking(getRanking()[i][1],id,correctAnswersCount);
+        if (getRanking()[i][2]== id){
+            var points = correctAnswersCount+getRanking()[i][1];
+            ranking(localStorage.getItem(userId) ,getRanking()[i][0], points)
         }
     }
-
     correctAnswersCount=0;
     restartGame();
 }
@@ -99,8 +96,5 @@ function checkSession() {
   }
 }
 
-
 // Llamar a la función para verificar la sesión al cargar la página
 checkSession();
-document.getElementById('restart-btn').addEventListener('click', restartGame);
-
