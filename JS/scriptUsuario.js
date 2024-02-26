@@ -22,7 +22,7 @@ function enviarRegistro() {
             }
         }
         
-        if (noExiste == true) {
+        if (noExiste) {
             registro(username, password, userID);
             ranking(userID, randomID());
             alert(`Te has registrado correctamente ${username}`);
