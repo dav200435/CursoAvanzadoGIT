@@ -4,7 +4,6 @@ var usuarios = getUsers();
 // ['cqXYZ0Zr4kmfnpOGYBVn', 'Usuario1', '12']
 
 function enviarRegistro() {
-    var recarga = false;
     var userID = randomID();
     var noExiste = true;
     document.getElementById('task-form').addEventListener('submit', function(event) {
@@ -22,20 +21,17 @@ function enviarRegistro() {
             registro(username, password, userID);
             ranking(userID, randomID());
             alert(`Te has registrado correctamente ${username}`);
-            recarga = true;
         } else {
             alert("Nombre de usuario ya existente");
-            recarga = true;
         }
-    });
 
-    if (recarga) {
-        recargar();
-    }
+        setTimeout(function() {
+            location.reload();
+        }, 150);
+    });
 }
 
 function enviarInicioSesion() {
-    var recarga = false;
     var correcto = false;
     var posicion = -1;
     document.getElementById('task-form1').addEventListener('submit', function(event) {
@@ -54,16 +50,14 @@ function enviarInicioSesion() {
             localStorage.userId = usuarios[posicion][0];
             localStorage.loggedIn = true;
             alert(`Has iniciado sesion correctamente ${username}`);
-            recarga = true;
         } else {
             alert("Nombre o contraseña incorrectas");
-            recarga = true;
         }
-    });
 
-    if (recarga) {
-        recargar();
-    }
+        setTimeout(function() {
+            location.reload();
+        }, 150);
+    });
 }
 
 function randomID() {
@@ -76,10 +70,6 @@ function randomID() {
     }
 
     return result;
-}
-
-function recargar() {
-    location. reload();
 }
 
 enviarRegistro();
