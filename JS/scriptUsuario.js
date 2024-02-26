@@ -20,10 +20,14 @@ function enviarRegistro() {
         if (noExiste == true) {
             registro(username, password, userID);
             ranking(userID, randomID());
-            alert(`Te has registrado correctamente ${username}, recarga la página para podern iniciar sesion`)
+            alert(`Te has registrado correctamente ${username}`);
         } else {
             alert("Nombre de usuario ya existente");
         }
+
+        setTimeout(function() {
+            location.reload();
+        }, 150);
     });
 }
 
@@ -45,10 +49,14 @@ function enviarInicioSesion() {
         if (correcto) {
             localStorage.userId = usuarios[posicion][0];
             localStorage.loggedIn = true;
-            alert(`Has iniciado sesion correctamente ${username}`)
+            alert(`Has iniciado sesion correctamente ${username}`);
         } else {
             alert("Nombre o contraseña incorrectas");
         }
+
+        setTimeout(function() {
+            location.reload();
+        }, 150);
     });
 }
 
