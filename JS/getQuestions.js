@@ -69,7 +69,7 @@ async function displayQuestions() {
                     button.style.backgroundColor = "red";
                 }
 
-                // Deshabilitar todos los botones después de la selección
+                // Deshabilitar todos los botones después de click
                 const allButtons = questionElement.querySelectorAll('button');
                 allButtons.forEach(btn => {
                     btn.disabled = true;
